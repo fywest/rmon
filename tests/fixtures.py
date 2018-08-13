@@ -1,12 +1,17 @@
 import pytest
+
 from rmon.app import create_app
 from rmon.models import Server
 from rmon.models import db as database
+
+
 @pytest.fixture
 def app():
     """ Flask app
     """
     return create_app()
+
+
 @pytest.yield_fixture
 def db(app):
     """数据库
@@ -15,6 +20,8 @@ def db(app):
         database.create_all()
         yield database
         database.drop_all()
+
+
 @pytest.fixture
 def server(db):
     """测试 Redis 服务器记录
